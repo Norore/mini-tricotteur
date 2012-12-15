@@ -101,9 +101,25 @@ class Echarpe:
 		and len(self.text_lrg.get_text()) > 0 \
 		and len(self.text_ma.get_text()) > 0 \
 		and len(self.text_cm.get_text()) > 0:
+		try:
+			float(self.text_lng.get_text())
+		except ValueError:
+			print u"La longueur doit être un nombre et peut être un flottant."
+		try:
+			float(self.text_lrg.get_text())
+		except ValueError:
+			print u"La largeur doit être un nombre et peut être un flottant."
+		try:
+			int(self.text_ma.get_text())
+		except ValueError:
+			print u"Le nombre de mailles doit être un nombre entier."
+		try:
+			float(self.text_cm.get_text())
+		except ValueError:
+			print u"Le nombre de centimètres doit être un nombre et peut être un flottant."
 	        self.lng_cm.set_text(self.text_lng.get_text()+u" centimètres - ")
 	        self.lng_ma.set_text(self.regle_de_trois(self.text_ma.get_text(), self.text_lng.get_text(), self.text_cm.get_text())+u" mailles")
-	        self.lrg_cm.set_text(self.text_lrg.get_text()+u" centimètres - ")
+        	self.lrg_cm.set_text(self.text_lrg.get_text()+u" centimètres - ")
 	        self.lrg_ma.set_text(self.regle_de_trois(self.text_ma.get_text(), self.text_lrg.get_text(), self.text_cm.get_text())+u" mailles")
 
     def regle_de_trois(self, depart, fin, convertion):
