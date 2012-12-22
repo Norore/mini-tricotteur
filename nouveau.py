@@ -101,22 +101,28 @@ class Echarpe:
                 and len(self.text_lrg.get_text()) > 0 \
                 and len(self.text_ma.get_text()) > 0 \
                 and len(self.text_cm.get_text()) > 0 ):
-			if not verif_valeur(self.text_lng.get_text()):
+			text_lng = re.sub(r',', '.', self.text_lng.get_text())
+			text_lrg = re.sub(r',', '.', self.text_lrg.get_text())
+			text_ma = re.sub(r',', '.', self.text_ma.get_text())
+			text_cm = re.sub(r',', '.', self.text_cm.get_text())
+
+			if not verif_valeur(text_lng):
 				info_box(u"La longueur doit être un nombre et peut être un flottant.")
 				return
-			if not verif_valeur(self.text_lrg.get_text()):
+			if not verif_valeur(text_lrg):
 				info_box(u"La largeur doit être un nombre et peut être un flottant.")
 				return
-			if not verif_valeur(self.text_ma.get_text()):
+			if not verif_valeur(text_ma):
 				info_box(u"Le nombre de mailles doit être un nombre entier.")
 				return
-			if not verif_valeur(self.text_cm.get_text()):
+			if not verif_valeur(text_cm):
 				info_box(u"Le nombre de centimètres doit être un nombre et peut être un flottant.")
 				return
-			self.lng_cm.set_text(self.text_lng.get_text()+u" centimètres - ")
-			self.lng_ma.set_text(regle_de_trois(self.text_ma.get_text(), self.text_lng.get_text(), self.text_cm.get_text())+u" mailles")
-			self.lrg_cm.set_text(self.text_lrg.get_text()+u" centimètres - ")
-			self.lrg_ma.set_text(regle_de_trois(self.text_ma.get_text(), self.text_lrg.get_text(), self.text_cm.get_text())+u" mailles")
+
+			self.lng_cm.set_text(text_lng+u" centimètres - ")
+			self.lng_ma.set_text(regle_de_trois(text_ma, text_lng, text_cm)+u" mailles")
+			self.lrg_cm.set_text(text_lrg+u" centimètres - ")
+			self.lrg_ma.set_text(regle_de_trois(text_ma, text_lrg, text_cm)+u" mailles")
 
 def info_box(text):
 	md = gtk.MessageDialog(None, 
